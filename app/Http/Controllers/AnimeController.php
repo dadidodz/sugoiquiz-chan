@@ -80,6 +80,23 @@ class AnimeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Trouver l'utilisateur par ID
+        $anime = Anime::find($id);
+
+        // Vérifier si l'utilisateur existe
+        if (!$anime) {
+            return response()->json([
+                'message' => 'Anime not found.',
+            ], 404);
+        }
+
+        // Supprimer l'utilisateur
+        $anime->delete();
+
+        // Retourner une réponse JSON de succès
+        return response()->json([
+            'message' => 'Anime deleted successfully.',
+            'anime_id' => $id,
+        ], 200);
     }
 }

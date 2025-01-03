@@ -139,6 +139,23 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Trouver l'utilisateur par ID
+        $user = User::find($id);
+
+        // Vérifier si l'utilisateur existe
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found.',
+            ], 404);
+        }
+
+        // Supprimer l'utilisateur
+        $user->delete();
+
+        // Retourner une réponse JSON de succès
+        return response()->json([
+            'message' => 'User deleted successfully.',
+            'user_id' => $id,
+        ], 200);
     }
 }
