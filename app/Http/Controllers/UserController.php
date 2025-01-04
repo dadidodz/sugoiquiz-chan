@@ -5,157 +5,118 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Auth; // Nécessaire pour Auth::attempt et Auth::user
+use Laravel\Passport\HasApiTokens;    // Assure-toi que le modèle User utilise Passport
+
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Liste des utilisateurs
     public function index()
     {
-        $users = User::get();
-        return $users;
+        return User::paginate(10); // Retourne 10 utilisateurs par page
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $faker = Faker::create();
-        // Validation des données d'entrée
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-        ]);
-
-        // Création d'un nouvel utilisateur
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']), // Hachage du mot de passe
-            'remember_token' => $faker->uuid, // Génération d'un token
-        ]);
-
-        // Retourner une réponse JSON
-        return response()->json([
-            'message' => 'User created successfully.',
-            'user' => $user,
-        ], 201);
-
-//        try {
-//            // Validation des données d'entrée
-//            $validatedData = $request->validate([
-//                'name' => 'required|string|max:255',
-//                'email' => 'required|email|unique:users,email',
-//                'password' => 'required|string|min:8',
-//            ]);
-//
-//            // Création d'un nouvel utilisateur
-//            $user = User::create([
-//                'name' => $validatedData['name'],
-//                'email' => $validatedData['email'],
-//                'password' => Hash::make($validatedData['password']), // Hachage du mot de passe
-//                'remember_token' => Str::random(10), // Génération d'un token
-//            ]);
-//
-//            return response()->json([
-//                'message' => 'User created successfully.',
-//                'user' => $user,
-//            ], 201);
-//
-//        } catch (\Illuminate\Validation\ValidationException $e) {
-//            return response()->json([
-//                'message' => 'Validation error.',
-//                'errors' => $e->errors(),
-//            ], 422); // Assurez-vous de renvoyer 422 ici
-//        }
-
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    // Afficher un utilisateur
     public function show(User $user)
     {
         return response()->json($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // Ajouter un utilisateur
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        // Valider les données de la requête
-        $request->validate([
-            'name' => 'nullable|string|max:255',
-            'email' => 'nullable|email|unique:users,email,' . $user->id,
-//            'password' => 'nullable|min:8|confirmed',  // La confirmation doit être envoyée dans le champ 'password_confirmation'
+    try {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'is_admin' => 'required|boolean',
         ]);
 
-        // Mettre à jour les champs disponibles dans la requête
-        if ($request->has('name')) {
-            $user->name = $request->input('name');
-        }
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'is_admin' => $validatedData['is_admin'],
+        ]);
 
-        if ($request->has('email')) {
-            $user->email = $request->input('email');
-        }
-
-        if ($request->has('password')) {
-            // Hash le nouveau mot de passe
-            $user->password = Hash::make($request->input('password'));
-        }
-
-        // Sauvegarder les changements dans la base de données
-        $user->save();
-
-        // Retourner l'utilisateur mis à jour
-        return response()->json($user);
+        return response()->json([
+            'message' => 'Utilisateur ajouté avec succès.',
+            'user' => $user,
+        ], 201);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Erreur lors de l\'ajout de l\'utilisateur.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        // Trouver l'utilisateur par ID
-        $user = User::find($id);
 
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            return response()->json([
-                'message' => 'User not found.',
-            ], 404);
+    // Modifier un utilisateur
+    public function update(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'email' => 'sometimes|email|unique:users,email,' . $user->id,
+            'password' => 'sometimes|string|min:8',
+            'is_admin' => 'sometimes|boolean',
+        ]);
+
+        if (isset($validatedData['password'])) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
         }
 
-        // Supprimer l'utilisateur
+        $user->update($validatedData);
+
+        return response()->json([
+            'message' => 'Utilisateur mis à jour avec succès.',
+            'user' => $user,
+        ]);
+    }
+
+    // Supprimer un utilisateur
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
         $user->delete();
 
-        // Retourner une réponse JSON de succès
         return response()->json([
-            'message' => 'User deleted successfully.',
-            'user_id' => $id,
-        ], 200);
+            'message' => 'Utilisateur supprimé avec succès.',
+        ]);
     }
+
+    // Authentification
+    public function login(Request $request)
+    {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string|min:8',
+    ]);
+
+    // Vérifie les identifiants
+    if (!Auth::attempt($request->only('email', 'password'))) {
+        return response()->json(['message' => 'Identifiants incorrects.'], 401);
+    }
+
+    // Récupère l'utilisateur authentifié
+    $user = Auth::user();
+
+    // Génère un token Passport
+    $token = $user->createToken('authToken')->accessToken;
+
+    return response()->json([
+        'token' => $token,
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'is_admin' => $user->is_admin,
+        ],
+    ]);
+    }
+
+    
 }

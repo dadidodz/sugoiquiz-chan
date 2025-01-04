@@ -24,18 +24,20 @@ use Illuminate\Support\Facades\Route;
 //});
 
 //Route::post('/users/create', [UserController::class, 'store'])->withoutMiddleware([\App\Http\Middleware\IsAdmin::class]);
-Route::post('/users/create', [UserController::class, 'store'])->withoutMiddleware(['auth:api', 'isAdmin']);
+route::post('/login', [UserController::class, 'login'])->withoutMiddleware(['auth:api', 'isAdmin']);
 
 // La route POST pour créer un utilisateur (sans authentification)
 //Route::apiResource('/users/create', UserController::class)->only(['store'])->withoutMiddleware(['auth:api']);
 
 // Routes GET protégées par les middlewares auth:api et is_admin
 Route::middleware(['auth:api', 'isAdmin'])->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::patch('/users/{user}', [UserController::class, 'update']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+    Route::get('/users', [UserController::class, 'index']);        // Liste des utilisateurs
+    Route::get('/users/{user}', [UserController::class, 'show']); // Afficher un utilisateur
+    Route::post('/users', [UserController::class, 'store']);      // Ajouter un utilisateur
+    Route::patch('/users/{user}', [UserController::class, 'update']); // Modifier un utilisateur
+    Route::delete('/users/{id}', [UserController::class, 'destroy']); // Supprimer un utilisateur
 });
+
 
 //Route::middleware(['auth:api', 'isAdmin'])->group(function () {
 //    Route::patch('/users/{user}', [UserController::class, 'update']);
@@ -50,6 +52,7 @@ Route::middleware(['auth:api', 'isAdmin'])->group(function () {
 Route::middleware(['auth:api', 'isAdmin'])->group(function () {
     Route::get('/animes', [AnimeController::class, 'index']);
     Route::get('/animes/{anime}', [AnimeController::class, 'show']);
+    Route::post('/animes', [AnimeController::class, 'store']);
     Route::patch('/animes/{animes}', [AnimeController::class, 'update']);
     Route::delete('/animes/{id}', [AnimeController::class, 'destroy']);
 });
