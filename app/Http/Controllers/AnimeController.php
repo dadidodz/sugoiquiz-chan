@@ -51,11 +51,11 @@ class AnimeController extends Controller
 
         // Valider les données de la requête
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|string',
-            'release_date' => 'nullable|date',
-            'details' => 'nullable|string',
+            'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'image' => 'sometimes|string',
+            'release_date' => 'sometimes|date',
+            'details' => 'sometimes|string',
         ]);
 
         // Trouver l'anime par son ID

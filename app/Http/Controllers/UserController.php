@@ -27,31 +27,31 @@ class UserController extends Controller
     // Ajouter un utilisateur
     public function store(Request $request)
     {
-    try {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-            'is_admin' => 'required|boolean',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8',
+                'is_admin' => 'required|boolean',
+            ]);
 
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-            'is_admin' => $validatedData['is_admin'],
-        ]);
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'is_admin' => $validatedData['is_admin'],
+            ]);
 
-        return response()->json([
-            'message' => 'Utilisateur ajouté avec succès.',
-            'user' => $user,
-        ], 201);
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Erreur lors de l\'ajout de l\'utilisateur.',
-            'error' => $e->getMessage(),
-        ], 500);
-    }
+            return response()->json([
+                'message' => 'Utilisateur ajouté avec succès.',
+                'user' => $user,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erreur lors de l\'ajout de l\'utilisateur.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
 
@@ -91,32 +91,32 @@ class UserController extends Controller
     // Authentification
     public function login(Request $request)
     {
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string|min:8',
-    ]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ]);
 
-    // Vérifie les identifiants
-    if (!Auth::attempt($request->only('email', 'password'))) {
-        return response()->json(['message' => 'Identifiants incorrects.'], 401);
+        // Vérifie les identifiants
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Identifiants incorrects.'], 401);
+        }
+
+        // Récupère l'utilisateur authentifié
+        $user = Auth::user();
+
+        // Génère un token Passport
+        $token = $user->createToken('authToken')->accessToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'is_admin' => $user->is_admin,
+            ],
+        ]);
     }
 
-    // Récupère l'utilisateur authentifié
-    $user = Auth::user();
 
-    // Génère un token Passport
-    $token = $user->createToken('authToken')->accessToken;
-
-    return response()->json([
-        'token' => $token,
-        'user' => [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'is_admin' => $user->is_admin,
-        ],
-    ]);
-    }
-
-    
 }

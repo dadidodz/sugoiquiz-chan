@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnimeController;
+use App\Http\Controllers\MusicController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -61,4 +62,9 @@ Route::middleware(['auth:api', 'isAdmin'])->group(function () {
 //    Route::patch('/animes/{animes}', [AnimeController::class, 'update']);
 //});
 
+Route::middleware(['auth:api', 'isAdmin'])->group(function () {
+    Route::get('/musics', [MusicController::class, 'index']);
+    Route::get('/musics/{music}', [MusicController::class, 'show']);
+    Route::patch('/musics/{music}', [MusicController::class, 'update']);
+});
 
