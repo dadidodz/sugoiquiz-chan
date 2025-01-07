@@ -69,3 +69,6 @@ Route::middleware(['auth:api', 'isAdmin'])->group(function () {
     Route::patch('/musics/{music}', [MusicController::class, 'update']);
 });
 
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});

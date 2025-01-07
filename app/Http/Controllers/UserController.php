@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserCreated;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth; // Nécessaire pour Auth::attempt et Auth::user
+use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;    // Assure-toi que le modèle User utilise Passport
 
 
@@ -41,6 +43,8 @@ class UserController extends Controller
                 'password' => Hash::make($validatedData['password']),
 //                'is_admin' => $validatedData['is_admin'],
             ]);
+
+//            Mail::to($user->email)->send(new UserCreated($user));
 
             return response()->json([
                 'message' => 'Utilisateur ajouté avec succès.',
