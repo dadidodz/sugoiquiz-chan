@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 route::post('/login', [UserController::class, 'login'])->withoutMiddleware(['auth:api', 'isAdmin']);
 
 // La route POST pour créer un utilisateur (sans authentification)
-//Route::apiResource('/users/create', UserController::class)->only(['store'])->withoutMiddleware(['auth:api']);
+Route::apiResource('/users/create', UserController::class)->only(['store'])->withoutMiddleware(['auth:api', 'isAdmin']);
 
 // Routes GET protégées par les middlewares auth:api et is_admin
 Route::middleware(['auth:api', 'isAdmin'])->group(function () {
@@ -51,11 +51,12 @@ Route::middleware(['auth:api', 'isAdmin'])->group(function () {
 
 // Routes GET protégées par les middlewares auth:api et is_admin
 Route::middleware(['auth:api', 'isAdmin'])->group(function () {
-    Route::get('/animes', [AnimeController::class, 'index']);
-    Route::get('/animes/{anime}', [AnimeController::class, 'show']);
-    Route::post('/animes', [AnimeController::class, 'store']);
-    Route::patch('/animes/{animes}', [AnimeController::class, 'update']);
-    Route::delete('/animes/{id}', [AnimeController::class, 'destroy']);
+//    Route::get('/animes', [AnimeController::class, 'index']);
+//    Route::get('/animes/{anime}', [AnimeController::class, 'show']);
+//    Route::post('/animes', [AnimeController::class, 'store']);
+//    Route::patch('/animes/{animes}', [AnimeController::class, 'update']);
+//    Route::delete('/animes/{id}', [AnimeController::class, 'destroy']);
+    Route::ApiResource('animes', AnimeController::class);
 });
 
 //Route::middleware(['auth:api', 'isAdmin'])->group(function () {

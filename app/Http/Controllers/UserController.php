@@ -32,14 +32,14 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:8',
-                'is_admin' => 'required|boolean',
+//                'is_admin' => 'required|boolean',
             ]);
 
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
-                'is_admin' => $validatedData['is_admin'],
+//                'is_admin' => $validatedData['is_admin'],
             ]);
 
             return response()->json([
