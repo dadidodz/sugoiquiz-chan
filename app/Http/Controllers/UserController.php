@@ -41,7 +41,7 @@ class UserController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
-//                'is_admin' => $validatedData['is_admin'],
+               'is_admin' => $validatedData['is_admin'],
             ]);
 
 //            Mail::to($user->email)->send(new UserCreated($user));

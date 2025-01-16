@@ -12,8 +12,13 @@ class AnimeController extends Controller
      */
     public function index()
     {
-        $animes = Anime::get();
-        return $animes;
+        return Anime::paginate(10);
+    }
+
+    // Afficher un utilisateur
+    public function show(Anime $anime)
+    {
+        return response()->json($anime);
     }
 
     /**
@@ -21,7 +26,30 @@ class AnimeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'release_date' => 'required|string|max:255',
+                'imageUrl' => 'required|string|max:255',
+            ]);
+
+            $anime = Anime::create([
+                'title' => $validatedData['title'],
+                'release_date' => $validatedData['release_date'],
+                'imageUrl' => $validatedData['imageUrl'],
+            ]);
+
+
+            return response()->json([
+                'message' => 'Anime ajouté avec succès.',
+                'user' => $user,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erreur lors de l\'ajout de l\'Anime.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -99,4 +127,25 @@ class AnimeController extends Controller
             'anime_id' => $id,
         ], 200);
     }
+
+    public function search(Request $request)
+{
+    try {
+        $query = $request->input('query', '');
+        $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $animes,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+
+
 }

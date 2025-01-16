@@ -30,6 +30,10 @@ route::post('/login', [UserController::class, 'login'])->withoutMiddleware(['aut
 // La route POST pour créer un utilisateur (sans authentification)
 Route::apiResource('/users/create', UserController::class)->only(['store'])->withoutMiddleware(['auth:api', 'isAdmin']);
 
+// La route GET pour la recherche d'animes dans la library
+Route::get('/animes/search', [AnimeController::class, 'search'])->withoutMiddleware(['auth:api', 'isAdmin']);;
+
+
 // Routes GET protégées par les middlewares auth:api et is_admin
 Route::middleware(['auth:api', 'isAdmin'])->group(function () {
     Route::get('/users', [UserController::class, 'index']);        // Liste des utilisateurs
