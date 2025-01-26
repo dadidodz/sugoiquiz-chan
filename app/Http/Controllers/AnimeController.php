@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAnimeRequest;
+use App\Http\Requests\UpdateAnimeRequest;
 use App\Models\Anime;
 use Illuminate\Http\Request;
 
@@ -24,16 +26,10 @@ class AnimeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAnimeRequest $request)
     {
         try {
-            $validatedData = $request->validate([
-                'title' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
-                'imageUrl' => 'required|string|max:255',
-                'release_date' => 'required|string|max:255',
-                'details' => 'sometimes|string|max:255',
-            ]);
+            $validatedData = $request->validated();
 
             $anime = Anime::create([
                 'title' => $validatedData['title'],
@@ -42,7 +38,6 @@ class AnimeController extends Controller
                 'imageUrl' => $validatedData['imageUrl'],
                 'details' => $validatedData['details'] ?? null,
             ]);
-
 
             return response()->json([
                 'message' => 'Anime ajouté avec succès.',
@@ -59,7 +54,7 @@ class AnimeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAnimeRequest $request, $id)
     {
         // Liste des champs autorisés pour la mise à jour (basée sur le modèle)
         $fillable = (new Anime)->getFillable();
@@ -74,13 +69,7 @@ class AnimeController extends Controller
         }
 
         // Valider les données de la requête
-        $validated = $request->validate([
-            'title' => 'sometimes|string|max:255',
-            'description' => 'sometimes|string',
-            'image' => 'sometimes|string',
-            'release_date' => 'sometimes|date',
-            'details' => 'sometimes|string',
-        ]);
+        $validatedData = $request->validated();
 
         // Trouver l'anime par son ID
         $anime = Anime::find($id);
@@ -90,7 +79,7 @@ class AnimeController extends Controller
         }
 
         // Mettre à jour les attributs de l'anime avec les données validées
-        $anime->update($validated);
+        $anime->update($validatedData);
 
         // Retourner la réponse après la mise à jour
         return response()->json([
@@ -126,20 +115,43 @@ class AnimeController extends Controller
 
     public function search(Request $request)
 {
-    try {
-        $query = $request->input('query', '');
-        $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
+//    try {
+//        $query = $request->input('query', '');
+//        $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
+//
+//        return response()->json([
+//            'success' => true,
+//            'data' => $animes,
+//        ]);
+//    } catch (\Exception $e) {
+//        return response()->json([
+//            'success' => false,
+//            'error' => $e->getMessage(),
+//        ], 500);
+//    }
+        try {
+            $query = $request->input('query', '');
+            $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
 
-        return response()->json([
-            'success' => true,
-            'data' => $animes,
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'error' => $e->getMessage(),
-        ], 500);
-    }
+            // Vérifier si des résultats ont été trouvés
+            if ($animes->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No animes found.',
+                    'data' => [],
+                ]);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $animes,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
 }
 
 

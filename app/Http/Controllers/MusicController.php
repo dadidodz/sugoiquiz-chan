@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateMusicRequest;
 use App\Models\Music;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,7 @@ class MusicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMusicRequest $request, $id)
     {
         // Liste des champs autorisés pour la mise à jour (basée sur le modèle)
         $fillable = (new Music)->getFillable();
@@ -66,12 +67,7 @@ class MusicController extends Controller
         }
 
         // Validation des données entrantes
-        $validatedData = $request->validate([
-            'title' => 'sometimes|string|max:255',
-            'file' => 'sometimes|string|max:255',
-            'duration' => 'sometimes|integer|min:0',
-            'animes_id' => 'sometimes|exists:animes,id',
-        ]);
+        $validatedData = $request->validated();
 
         // Récupération de la musique par son ID
         $music = Music::find($id);

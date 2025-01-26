@@ -14,17 +14,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Créer une instance de Faker
         $faker = Faker::create();
 
-        // Créer 10 utilisateurs avec des données aléatoires
-        foreach (range(1, 10) as $index) {
-            User::create([
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'password' => bcrypt('password'),  // Tu peux utiliser un mot de passe fixe ou générer un autre mot de passe
-                'remember_token' => $faker->uuid,
-            ]);
-        }
+        User::create([
+            'name' => "admin",
+            'email' => "admin@admin.com",
+            'password' => bcrypt('password'),
+            'remember_token' => $faker->uuid,
+            'is_admin' => 1,
+        ]);
+
+        User::factory(4)->create();
+//        // Créer une instance de Faker
+//        $faker = Faker::create();
+//
+//        // Créer 10 utilisateurs avec des données aléatoires
+//        foreach (range(1, 10) as $index) {
+//            User::create([
+//                'name' => $faker->name,
+//                'email' => $faker->unique()->safeEmail,
+//                'password' => bcrypt('password'),  // Tu peux utiliser un mot de passe fixe ou générer un autre mot de passe
+//                'remember_token' => $faker->uuid,
+//            ]);
+//        }
     }
 }

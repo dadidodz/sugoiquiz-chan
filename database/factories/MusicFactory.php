@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Anime;
 use App\Models\Music;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,7 @@ class MusicFactory extends Factory
             'title' => $this->faker->sentence(3), // Un titre aléatoire de 3 mots
             'file' => $this->faker->word . '.mp3', // Un fichier aléatoire
             'duration' => $this->faker->numberBetween(180, 360), // Durée aléatoire entre 3 et 6 minutes
-            'animes_id' => $this->faker->numberBetween(1, 20), // Lier un anime aléatoire avec un ID entre 1 et 20
+            'animes_id' => Anime::inRandomOrder()->first()?->id ?? 1, // Sélectionne un ID valide ou 1 par défaut
         ];
     }
 }

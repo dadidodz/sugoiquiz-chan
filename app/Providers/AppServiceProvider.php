@@ -9,6 +9,7 @@ use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      */
@@ -24,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Passport::enablePasswordGrant();
         User::observe(UserObserver::class);
+
     }
 }

@@ -6,15 +6,15 @@ use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth; // Nécessaire pour Auth::attempt et Auth::user
-use Illuminate\Support\Facades\Mail;
-use Laravel\Passport\HasApiTokens;    // Assure-toi que le modèle User utilise Passport
+
 
 
 class UserController extends Controller
 {
+    use AuthorizesRequests;
     // Liste des utilisateurs
     public function index()
     {
@@ -51,7 +51,6 @@ class UserController extends Controller
             ], 500);
         }
     }
-
 
     // Modifier un utilisateur
     public function update(UpdateUserRequest $request, User $user)

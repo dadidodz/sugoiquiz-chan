@@ -8,7 +8,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Music extends Model
 {
-    /** @use HasFactory<\Database\Factories\AnimeFactory> */
+    /** @use HasFactory<\Database\Factories\MusicFactory> */
     use HasApiTokens, HasFactory;
 
 
