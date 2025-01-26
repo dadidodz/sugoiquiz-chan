@@ -8,7 +8,10 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth; // Nécessaire pour Auth::attempt et Auth::user
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+// Nécessaire pour Auth::attempt et Auth::user
 
 
 
@@ -82,9 +85,12 @@ class UserController extends Controller
     }
 
     // Authentification
-    public function login(LoginUserRequest $request)
+    public function login(Request $request)
     {
-        $validatedData = $request->validated();
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ]);
 
         // Vérifie les identifiants
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -107,6 +113,5 @@ class UserController extends Controller
             ],
         ]);
     }
-
 
 }
