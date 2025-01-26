@@ -115,43 +115,29 @@ class AnimeController extends Controller
 
     public function search(Request $request)
 {
-//    try {
-//        $query = $request->input('query', '');
-//        $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
-//
-//        return response()->json([
-//            'success' => true,
-//            'data' => $animes,
-//        ]);
-//    } catch (\Exception $e) {
-//        return response()->json([
-//            'success' => false,
-//            'error' => $e->getMessage(),
-//        ], 500);
-//    }
-        try {
-            $query = $request->input('query', '');
-            $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
+    try {
+        $query = $request->input('query', '');
+        $animes = Anime::where('title', 'LIKE', '%' . $query . '%')->get();
 
-            // Vérifier si des résultats ont été trouvés
-            if ($animes->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No animes found.',
-                    'data' => [],
-                ]);
-            }
-
-            return response()->json([
-                'success' => true,
-                'data' => $animes,
-            ]);
-        } catch (\Exception $e) {
+        // Vérifier si des résultats ont été trouvés
+        if ($animes->isEmpty()) {
             return response()->json([
                 'success' => false,
-                'error' => $e->getMessage(),
-            ], 500);
+                'message' => 'No animes found.',
+                'data' => [],
+            ]);
         }
+
+        return response()->json([
+            'success' => true,
+            'data' => $animes,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage(),
+        ], 500);
+    }
 }
 
 

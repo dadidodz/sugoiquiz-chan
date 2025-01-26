@@ -14,13 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
         User::create([
             'name' => "admin",
             'email' => "admin@admin.com",
             'password' => bcrypt('password'),
-            'remember_token' => $faker->uuid,
             'is_admin' => 1,
         ]);
 
