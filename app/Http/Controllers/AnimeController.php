@@ -29,20 +29,24 @@ class AnimeController extends Controller
         try {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
-                'release_date' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
                 'imageUrl' => 'required|string|max:255',
+                'release_date' => 'required|string|max:255',
+                'details' => 'sometimes|string|max:255',
             ]);
 
             $anime = Anime::create([
                 'title' => $validatedData['title'],
+                'description' => $validatedData['description'],
                 'release_date' => $validatedData['release_date'],
                 'imageUrl' => $validatedData['imageUrl'],
+                'details' => $validatedData['details'] ?? null,
             ]);
 
 
             return response()->json([
                 'message' => 'Anime ajouté avec succès.',
-                'user' => $user,
+                'anime' => $anime,
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
@@ -50,14 +54,6 @@ class AnimeController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Anime $anime)
-    {
-        return response()->json($anime);
     }
 
     /**

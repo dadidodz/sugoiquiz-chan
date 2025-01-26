@@ -21,7 +21,6 @@ class UserController extends Controller
         return User::paginate(10); // Retourne 10 utilisateurs par page
     }
 
-
     // Afficher un utilisateur
     public function show(User $user)
     {
@@ -38,7 +37,7 @@ class UserController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
-               'is_admin' => $validatedData['is_admin'],
+                'is_admin' => $validatedData['is_admin'] ?? false,
             ]);
 
             return response()->json([
