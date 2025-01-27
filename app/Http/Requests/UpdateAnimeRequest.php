@@ -25,7 +25,7 @@ class UpdateAnimeRequest extends FormRequest
             'title' => 'sometimes|string|max:255',
             'description' => 'sometimes|string',
             'image' => 'sometimes|string',
-            'release_date' => 'sometimes|date',
+            'release_date' => 'sometimes|string',
             'details' => 'sometimes|string',
         ];
     }

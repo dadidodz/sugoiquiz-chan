@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-// Nécessaire pour Auth::attempt et Auth::user
-
-
-
 class UserController extends Controller
 {
     use AuthorizesRequests;

@@ -92,8 +92,25 @@ class MusicController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Music $music)
+    public function destroy(string $id)
     {
-        //
+        // Trouver l'utilisateur par ID
+        $music = Music::find($id);
+
+        // Vérifier si l'utilisateur existe
+        if (!$music) {
+            return response()->json([
+                'message' => 'Anime not found.',
+            ], 404);
+        }
+
+        // Supprimer l'utilisateur
+        $music->delete();
+
+        // Retourner une réponse JSON de succès
+        return response()->json([
+            'message' => 'Music deleted successfully.',
+            'music_id' => $id,
+        ], 200);
     }
 }

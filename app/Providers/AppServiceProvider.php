@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Passport::enablePasswordGrant();
-//        User::observe(UserObserver::class);
+        User::observe(UserObserver::class);
 
     }
 }
