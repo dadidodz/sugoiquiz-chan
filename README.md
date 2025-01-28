@@ -60,6 +60,8 @@ Saisir :
 
 # Routes API et utilisations
 
+### **La collection des routes API au format JSON est disponibles ici : sugoiquiz-chan/resources/postman**
+
 ⭐ : Les routes suivie de cette étoile sont des routes uniquement accessible par un admin. Dans Postman, il est nécessaire de renseigner l'access_token dans Authorization > Bearer token.
 
 ## Utilisateurs

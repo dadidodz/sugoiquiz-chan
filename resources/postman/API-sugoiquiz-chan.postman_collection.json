@@ -1,0 +1,680 @@
+{
+	"info": {
+		"_postman_id": "6a235716-57c5-47af-8430-93ca368a19f8",
+		"name": "API-sugoiquiz-chan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39188632",
+		"_collection_link": "https://sugoi-quiz-chan.postman.co/workspace/sugoi-quiz-chan~854f3873-ac7e-482d-8923-8d2dd67dcec5/collection/39188645-6a235716-57c5-47af-8430-93ca368a19f8?action=share&source=collection_link&creator=39188632"
+	},
+	"item": [
+		{
+			"name": "Post create user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Pablo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "368568@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/users/create",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/users",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/users/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete specific user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/users/6",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"users",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch specific user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Dorianez",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "doriane@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/users/2",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post create anime",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "AnimeY",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Description de l'anime AnimeY",
+							"type": "text"
+						},
+						{
+							"key": "imageUrl",
+							"value": "https://via.placeholder.com/640x480.png/9984cc?text=anime+Faker+impedit",
+							"type": "text"
+						},
+						{
+							"key": "release_date",
+							"value": "2000-10-06",
+							"type": "text"
+						},
+						{
+							"key": "details",
+							"value": "{\\\"rating\\\":9.6,\\\"episodes\\\":91,\\\"studio\\\":\\\"Bradtke-Purdy\\\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get animes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get anime by search",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes/search?query=Naruto",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Naruto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific anime by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch specific anime by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "description",
+							"value": "Description mise à jour",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete specific anime by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/animes/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"animes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get musics",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/musics",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"musics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific music by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/musics/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"musics",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch specific music by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "nbvcx",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "duration",
+							"value": "100",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "animes_id",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/musics/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"musics",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete specific music by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzE4MmM0YWZhMDljNmU0Zjk4MTYyNDBhOTk1NjU5ZjgxMjQ2MDAyZDM5NjZlYzNkODJmMzk4MDRjZmU2YTEzOGI4NWU5ZDJjZjUwYmZlYzEiLCJpYXQiOjE3Mzc5MDc0NjEuMTk4Mjc2LCJuYmYiOjE3Mzc5MDc0NjEuMTk4Mjc3LCJleHAiOjE3Njk0NDM0NjEuMTg1OTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mwFbjgT2fXNsVmkenBQdCHdCUNlqGeJF8Y-o-jXHpazk0fSVZMOYl3qd9dDe80pMXS7N165zzgBLULrxBqMwIDCawqG1YGFzpZ6IBFRsQ20aGsCemcviQLtmJeBM-ukmPwIoSIaniIHxG6VHzYkaYG8806hpvFUFBD6UH1zrEC2c9FoBzx128ksoOq5dz4nH_fRsqthSLogA8Vl70ciDuG700SbKiZkKQZzFRiZ4M-rbrLsDfhZdiGMAPQLxckVRYlPa76npq2v86DLs5tvkDkKJCUKW008JpBBAALOyPaxFqLohp4nSgCqjVSJWNthOUeWMmLqshKk2odHZqfp99mRquDUFkXZYwZmgrImTr0FyEpB5f6-xiaBA3UofvZJfmnAvN7ApVpq7jhCweE3vqpasLHKePyf3utms8EyAofTtVkuqjlJFMu7H1JBgc8t5tS_T7SSAvrYJRczs6LpY-6KeD4JzCe0jG6-ui52biDc_WHs8jGVtCwRlywSmLIYTmtZChw2qEGrGTIn_V7jCEOzbMZOXxvXiCNHoL1EyKX0p_v3B3VnioToakdOd7eEGXO2XoSbtK8bSBBzdZxkJThE0z7uqmBIGRDhc_oug-mWbWAzNulADAfAE6LmUAHosxDEb1qGLCNOqTYBtbWLjD_PWKqSiUHoIThL4LfRLscU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/music/1",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"music",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post oauth token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "KBYcMDtZJQTfCE8VY9HLmSpCX0y0pKrRaXPdLcuQ",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "*",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/oauth/token",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://sugoiquiz-chan.test/api/login",
+					"protocol": "http",
+					"host": [
+						"sugoiquiz-chan",
+						"test"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
